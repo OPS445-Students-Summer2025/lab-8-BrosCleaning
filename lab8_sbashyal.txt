@@ -1,0 +1,31 @@
+
+PLAY [localhost] ***************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [Remove tree package (Debian/Ubuntu)] *************************************
+ok: [localhost]
+
+TASK [Set hostname] ************************************************************
+ok: [localhost]
+
+TASK [Create user] *************************************************************
+ok: [localhost]
+
+TASK [Setup SSH key for the new user] ******************************************
+ok: [localhost]
+
+TASK [Create lab directories] **************************************************
+ok: [localhost] => (item=lab1)
+ok: [localhost] => (item=lab2)
+ok: [localhost] => (item=lab3)
+ok: [localhost] => (item=lab4)
+ok: [localhost] => (item=lab5)
+ok: [localhost] => (item=lab6)
+ok: [localhost] => (item=lab7)
+ok: [localhost] => (item=lab8)
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

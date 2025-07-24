@@ -1,0 +1,37 @@
+---
+- hosts: localhost
+  become: yes
+  vars:
+    seneca_id: "sbashyal"  
+    labs: ['lab1', 'lab2', 'lab3', 'lab4', 'lab5', 'lab6', 'lab7', 'lab8']
+
+  tasks:
+    - name: Remove tree package (Debian/Ubuntu)
+      apt:
+        name: tree
+        state: absent
+
+    - name: Set hostname
+      hostname:
+        name: "sbashyal"  # Explicitly set to your ID
+
+    - name: Create user
+      user:
+        name: "sbashyal"  # Your user account
+        groups: sudo
+        shell: /bin/bash
+        append: yes
+
+    - name: Setup SSH key for the new user
+      authorized_key:
+        user: "sbashyal"  # Your user account
+        key: "{{ lookup('file', '/home/sbashyal/.ssh/id_rsa.pub') }}"  # Full path to your key
+
+    - name: Create lab directories
+      file:
+        path: "/home/sbashyal/ops445/{{ item }}"  # Your home directory
+        state: directory
+        owner: "sbashyal"
+        group: "sbashyal"
+        mode: '0755'
+      loop: "{{ labs }}"
